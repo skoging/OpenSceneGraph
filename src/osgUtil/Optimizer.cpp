@@ -4516,7 +4516,7 @@ void Optimizer::FlattenStaticTransformsDuplicatingSharedSubgraphsVisitor::apply(
     if(!_matrixStack.empty() && group.getNumParents() > 1 && nodepathsize > 1)
     {
         // copy this Group
-        osg::ref_ptr<osg::Group> new_group = osg::clone(&group, osg::CopyOp(osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS));
+        osg::ref_ptr<osg::Group> new_group = osg::clone(&group, osg::CopyOp(osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS | osg::CopyOp::DEEP_COPY_PRIMITIVES));
 
         // New Group should only be added to parent through which this Group
         // was traversed, not to all parents of this Group.
@@ -4559,7 +4559,7 @@ void Optimizer::FlattenStaticTransformsDuplicatingSharedSubgraphsVisitor::apply(
 
         // convert this Transform to a Group
         osg::ref_ptr<osg::Group> group = new osg::Group(dynamic_cast<osg::Group&>(transform),
-            osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS);
+            osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS | osg::CopyOp::DEEP_COPY_PRIMITIVES);
 
         // New Group should only be added to parent through which this Transform
         // was traversed, not to all parents of this Transform.
@@ -4595,7 +4595,7 @@ void Optimizer::FlattenStaticTransformsDuplicatingSharedSubgraphsVisitor::apply(
     if(!_matrixStack.empty() && lod.getNumParents() > 1 && nodepathsize > 1)
     {
         osg::ref_ptr<osg::LOD> new_lod = new osg::LOD(lod,
-            osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS);
+            osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS | osg::CopyOp::DEEP_COPY_PRIMITIVES);
 
         // New LOD should only be added to parent through which this LOD
         // was traversed, not to all parents of this LOD.
@@ -4643,7 +4643,7 @@ void Optimizer::FlattenStaticTransformsDuplicatingSharedSubgraphsVisitor::apply(
             {
                 // convert this Transform to a Group
                 osg::ref_ptr<osg::Geode> new_geode = new osg::Geode(geode,
-                    osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS);
+                    osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS | osg::CopyOp::DEEP_COPY_PRIMITIVES);
 
                 // New Group should only be added to parent through which this Transform
                 // was traversed, not to all parents of this Transform.
@@ -4677,7 +4677,7 @@ void Optimizer::FlattenStaticTransformsDuplicatingSharedSubgraphsVisitor::apply(
             {
                 // convert this Transform to a Group
                 osg::ref_ptr<osg::Billboard> new_billboard = new osg::Billboard(billboard,
-                    osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS);
+                    osg::CopyOp::DEEP_COPY_NODES | osg::CopyOp::DEEP_COPY_DRAWABLES | osg::CopyOp::DEEP_COPY_ARRAYS | osg::CopyOp::DEEP_COPY_PRIMITIVES);
 
                 // New Billboard should only be added to parent through which this Billboard
                 // was traversed, not to all parents of this Billboard.
