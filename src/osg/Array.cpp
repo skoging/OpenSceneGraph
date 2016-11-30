@@ -60,13 +60,13 @@ static const char* s_ArrayNames[] =
     "Vec3dArray",   //31
     "Vec4dArray",   //32
 
-    "MatrixArray",  //33
+    "MatrixfArray", //33
     "MatrixdArray", //34
 };
 
 const char* Array::className() const
 {
-    if (_arrayType>=ArrayType && _arrayType<=Vec4dArrayType)
+    if (_arrayType>=ArrayType && _arrayType<=MatrixdArrayType)
         return s_ArrayNames[_arrayType];
     else
         return "UnknownArray";
